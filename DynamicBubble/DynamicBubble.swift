@@ -155,7 +155,7 @@ class DynamicBubble: UIView {
     }
     */
     
-    private var roundingFactor: CGFloat = 0.05
+    fileprivate var roundingFactor: CGFloat = 0.05
     
     var textFont: UIFont {
         get { return (canvas?.textView.font)! }
@@ -919,7 +919,7 @@ private class DynamicBubbleCanvas: UIView, UITextViewDelegate {
     }
     
     private func drawBubbleFrame(ctx: CGContext) {
-        bubblePath = UIBezierPath(roundedRect: bubbleFrame, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: bubbleFrame.size.width * (bubbleView?.rounding)!, height: bubbleFrame.size.height * (bubbleView?.rounding)!))
+        bubblePath = UIBezierPath(roundedRect: bubbleFrame, byRoundingCorners: UIRectCorner.allCorners, cornerRadii: CGSize(width: bubbleFrame.size.width * (bubbleView?.roundingFactor)!, height: bubbleFrame.size.height * (bubbleView?.roundingFactor)!))
         
         bubbleView?.strokeColor.setStroke()
         bubbleView?.fillColor.setFill()

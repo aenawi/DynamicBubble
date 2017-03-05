@@ -25,7 +25,6 @@ enum ControlsMode: Int {
 class ViewController: UIViewController {
     var bubbles: Set<DynamicBubble>
     private var mapView: MKMapView?
-    private var slider: UISlider?
     var controlsModeButton: UIButton?
     var controlsMode = ControlsMode.on
     
@@ -61,7 +60,7 @@ class ViewController: UIViewController {
         showAddressOnMap("Tokyo")
         
         let overlayView = UIView(frame: view.bounds)
-        overlayView.backgroundColor = UIColor(white: 0.0, alpha: 0.50)
+        overlayView.backgroundColor = UIColor(white: 0.0, alpha: 0.30)
         view.addSubview(overlayView)
         
         let addButton = defaultButtonWithTitle("Add", selector: #selector(addBubble))
@@ -74,16 +73,6 @@ class ViewController: UIViewController {
         controlsModeButton?.frame = CGRect(x: view.bounds.size.width / 2 - 150, y: 10, width: 300, height: 44)
         
         view.addSubview(controlsModeButton!)
-        
-        slider = UISlider(frame: CGRect(
-            x: 10, y: view.bounds.size.height - 44 - 10,
-            width: view.bounds.size.width - addButton.frame.size.width - 30, height: 44))
-        slider?.thumbTintColor = UIColor.black
-        slider?.minimumValue = 0.0
-        slider?.maximumValue = 0.20
-        slider?.value = 0.05
-        slider?.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
-        view.addSubview(slider!)
     }
     
     func showAddressOnMap(_ addressString: String) {
@@ -119,7 +108,6 @@ class ViewController: UIViewController {
     func addBubble() {
         let bubble = DynamicBubble(centerPoint: self.view.center, originSides: [.down, .up, .left, .right])
         bubble.addObserver(self, forKeyPath: "center", options: .new, context: nil)
-        bubble.rounding = CGFloat((slider?.value)!)
         
         randomizeAppearance(forBubble: bubble)
         
@@ -127,13 +115,6 @@ class ViewController: UIViewController {
         self.view.addSubview(bubble)
         
         updateBubblesWithNewControlsMode()
-    }
-    
-    func sliderValueChanged(_ slider: UISlider) {
-        bubbles.forEach { (bubble) in
-            bubble.rounding = CGFloat(slider.value)
-            bubble.setNeedsDisplay()
-        }
     }
     
     func toggleControlsMode() {
