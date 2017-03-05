@@ -29,7 +29,6 @@ bubble.fillColor = UIColor.lightGray
 bubble.strokeColor = UIColor.darkGray
 bubble.controlsColor = UIColor.green
 bubble.controlsRadius = 3
-bubble.rounding = 0.05
 
 // Behaviour
 
