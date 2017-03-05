@@ -144,13 +144,17 @@ class DynamicBubble: UIView {
     var fillColor: UIColor = defaultFillColor
     var strokeColor: UIColor = defaultStrokeColor
     
+    // TODO: Add support of any rounding
+    /*
     var rounding: CGFloat {
         get { return roundingFactor }
         set(newRounding) {
-            roundingFactor = (newRounding <= 0.10) ? newRounding : 0.10
+            roundingFactor = (newRounding <= 0.05) ? newRounding : 0.05
             canvas?.setNeedsDisplay()
         }
     }
+    */
+    
     private var roundingFactor: CGFloat = 0.05
     
     var textFont: UIFont {
