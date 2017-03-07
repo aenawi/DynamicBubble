@@ -71,5 +71,8 @@ There is pretty much everything for user to control bubble on screen.
 + Add visual controls for tails add/remove actions
 + Add support for higher rounding values (circle bubbles)
 
+## Contributions
+Pull requests are welcome!
+
 ## License
 Distributed under the permissive zlib License
